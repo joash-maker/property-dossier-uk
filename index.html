@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Property Dossier Studio | Property information ready for your CRM</title>
+  <meta name="description" content="Property Dossier Studio turns vendor and landlord emails into structured, review-ready property records before they reach your CRM." />
+  <meta name="theme-color" content="#07111f" />
+  <meta property="og:title" content="Property Dossier Studio" />
+  <meta property="og:description" content="Turn property emails into structured, review-ready records before they reach your CRM." />
+  <meta property="og:type" content="website" />
+  <style>
+    :root {
+      --bg:#07111f;
+      --panel:#0c1b2b;
+      --panel-2:#10243a;
+      --text:#f6f8fb;
+      --muted:#9fb0c3;
+      --line:#22354b;
+      --green:#35d6a0;
+      --green-deep:#0f9f72;
+      --amber:#f3c95f;
+      --white:#fff;
+      --ink:#142033;
+      --soft:#eef3f5;
+      --shadow:0 24px 80px rgba(0,0,0,.28);
+      --serif: Georgia, 'Times New Roman', serif;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.55}
+    a{color:inherit;text-decoration:none}
+    .wrap{width:min(1180px,calc(100% - 40px));margin:auto}
+    .nav{position:sticky;top:0;z-index:30;background:rgba(7,17,31,.88);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:16px 0}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800}
+    .mark{width:40px;height:40px;border-radius:12px;background:var(--green);display:grid;place-items:center;color:#052417;font-weight:900;box-shadow:0 8px 30px rgba(53,214,160,.2)}
+    .brand small{display:block;color:var(--muted);font-weight:500;font-size:12px;margin-top:1px}
+    .navlinks{display:flex;align-items:center;gap:22px;color:#c5d0dc;font-size:14px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border-radius:12px;padding:13px 18px;font-weight:800;border:1px solid transparent;transition:.2s ease;cursor:pointer}
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{background:var(--green);color:#06261a}
+    .btn-secondary{border-color:#38506b;color:#eaf1f8;background:#0b1727}
+    .hero{padding:88px 0 70px;overflow:hidden}
+    .hero-grid{display:grid;grid-template-columns:1.02fr .98fr;align-items:center;gap:58px}
+    .eyebrow{color:var(--green);text-transform:uppercase;letter-spacing:.18em;font-weight:900;font-size:12px}
+    h1{font-family:var(--serif);font-size:clamp(46px,6vw,76px);line-height:.99;letter-spacing:-.035em;margin:14px 0 22px;max-width:760px}
+    .lede{font-size:19px;color:#bdc9d7;max-width:690px;margin:0 0 28px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+    .micro{color:#8da0b4;font-size:13px;margin-top:16px}
+    .product-shell{position:relative;border:1px solid #28415c;border-radius:24px;background:linear-gradient(160deg,#0c1b2c,#091524);padding:16px;box-shadow:var(--shadow)}
+    .product-shell:before{content:"";position:absolute;inset:-100px -120px auto auto;width:260px;height:260px;background:rgba(53,214,160,.17);filter:blur(80px);border-radius:50%;pointer-events:none}
+    .appbar{height:36px;border-bottom:1px solid #23384f;display:flex;align-items:center;gap:8px;color:#7f94aa;font-size:11px}
+    .dots{display:flex;gap:5px}.dot{width:7px;height:7px;border-radius:50%;background:#395069}.dot:nth-child(2){background:#d3a94d}.dot:nth-child(3){background:#36c992}
+    .appbody{display:grid;grid-template-columns:1.15fr .85fr;gap:12px;padding-top:13px}
+    .mini-card{background:#0b1828;border:1px solid #233950;border-radius:14px;padding:14px}
+    .mini-title{font-size:11px;color:#86a0b8;text-transform:uppercase;letter-spacing:.14em;font-weight:800}
+    .mini-head{font-family:var(--serif);font-weight:700;font-size:19px;margin:5px 0 11px}
+    .email-line{height:8px;background:#24394f;border-radius:99px;margin:8px 0}.email-line.short{width:61%}
+    .chips{display:flex;flex-wrap:wrap;gap:6px}.chip{border:1px solid #255943;background:#0e3029;color:#8ff1cc;border-radius:999px;padding:5px 8px;font-size:10px}
+    .progress{height:7px;background:#203247;border-radius:99px;overflow:hidden;margin:10px 0}.progress span{display:block;width:76%;height:100%;background:var(--green)}
+    .status{display:flex;align-items:center;justify-content:space-between;margin-top:12px;font-size:11px}.status strong{color:#8af0c8}
+    .handoff{margin-top:12px;padding:12px;border-radius:12px;background:#e8fbf3;color:#0b6148;font-size:11px;font-weight:800}
+    section{padding:78px 0}
+    .light{background:var(--white);color:var(--ink)}
+    .section-kicker{font-weight:900;font-size:12px;text-transform:uppercase;letter-spacing:.16em;color:var(--green-deep)}
+    .section-title{font-family:var(--serif);font-size:clamp(34px,4vw,52px);line-height:1.05;letter-spacing:-.03em;margin:10px 0 18px}
+    .section-copy{font-size:18px;color:#526175;max-width:780px}
+    .problem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:38px}
+    .problem{border:1px solid #dbe4eb;border-radius:18px;padding:24px;background:#fbfcfd}
+    .problem b{font-size:18px;display:block;margin-bottom:8px}.problem p{margin:0;color:#607083}
+    .workflow{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:36px;position:relative}
+    .step{background:#0b1929;border:1px solid #28405a;border-radius:16px;padding:19px;min-height:150px}
+    .step-no{color:var(--green);font-weight:900;font-size:12px}.step h3{margin:10px 0 8px;font-size:17px}.step p{color:#9eb0c3;font-size:14px;margin:0}
+    .positioning{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:38px}
+    .yes,.no{border-radius:20px;padding:28px}
+    .yes{background:#e8fbf3;border:1px solid #bcebd8}.no{background:#f6f8fa;border:1px solid #dce4ea}
+    .yes h3,.no h3{font-size:22px;margin:0 0 12px}.yes ul,.no ul{margin:0;padding-left:20px;color:#526175}.yes li,.no li{margin:8px 0}
+    .feature-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:34px}
+    .feature{border:1px solid #243950;background:#0b1828;border-radius:18px;padding:24px}.feature h3{margin:0 0 7px;font-size:18px}.feature p{margin:0;color:#9eb0c3}
+    .quote{margin-top:34px;border-left:3px solid var(--green);padding:18px 22px;background:#0b1828;border-radius:0 14px 14px 0;color:#c2cfda;font-size:18px}
+    .pilot{background:linear-gradient(135deg,#0d231f,#0b1828);border-top:1px solid #20364e;border-bottom:1px solid #20364e}
+    .pilot-box{display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center;border:1px solid #2b465e;border-radius:24px;padding:38px;background:rgba(6,18,30,.55)}
+    .pilot-box p{color:#aab9c7;max-width:670px}.pilot-actions{display:flex;justify-content:flex-end;gap:12px;flex-wrap:wrap}
+    .faq{display:grid;grid-template-columns:.8fr 1.2fr;gap:48px}.faq-list details{border-top:1px solid #dce4ea;padding:18px 0}.faq-list details:last-child{border-bottom:1px solid #dce4ea}.faq-list summary{font-weight:800;cursor:pointer}.faq-list p{color:#5b6a7c;margin:10px 0 0}
+    footer{padding:30px 0 44px;border-top:1px solid #1f3145;color:#8396aa;font-size:13px}.footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    @media(max-width:900px){.hero-grid,.pilot-box,.faq{grid-template-columns:1fr}.hero{padding-top:54px}.workflow{grid-template-columns:1fr 1fr}.problem-grid{grid-template-columns:1fr}.feature-grid{grid-template-columns:1fr}.positioning{grid-template-columns:1fr}.pilot-actions{justify-content:flex-start}.navlinks a:not(.btn){display:none}}
+    @media(max-width:620px){.wrap{width:min(100% - 28px,1180px)}.appbody{grid-template-columns:1fr}.workflow{grid-template-columns:1fr}.nav-inner{padding:12px 0}.brand div:last-child{font-size:14px}.hero{padding-bottom:54px}.btn{width:100%}.hero-actions{display:grid}.pilot-actions{display:grid}.pilot-actions .btn{width:100%}}
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top">
+        <span class="mark">⌂</span>
+        <div>Property Dossier Studio<small>Instruction → evidence → CRM handoff</small></div>
+      </a>
+      <div class="navlinks">
+        <a href="#how">How it works</a>
+        <a href="#fit">Where it fits</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn btn-primary" href="mailto:hello@mediahubink.com?subject=Property%20Dossier%20Studio%20demo">Request a demo</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">Built for estate agents, lettings teams and property managers</div>
+          <h1>Turn property emails into review-ready records before they reach your CRM.</h1>
+          <p class="lede">Property Dossier Studio takes the messy information vendors and landlords send by email, structures it into a working property dossier, highlights what is missing, and prepares a clean handoff for your CRM.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="mailto:hello@mediahubink.com?subject=Property%20Dossier%20Studio%20pilot">Request a pilot</a>
+            <a class="btn btn-secondary" href="#how">See how it works</a>
+          </div>
+          <div class="micro">Designed to sit before your existing CRM, not replace it.</div>
+        </div>
+
+        <div class="product-shell" aria-label="Illustration of the Property Dossier Studio workflow">
+          <div class="appbar"><div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div> Property Dossier Studio</div>
+          <div class="appbody">
+            <div class="mini-card">
+              <div class="mini-title">Property email</div>
+              <div class="mini-head">42 Thornes Lane, Wakefield</div>
+              <div class="email-line"></div><div class="email-line"></div><div class="email-line short"></div>
+              <div class="chips"><span class="chip">£925 pcm</span><span class="chip">2 bedrooms</span><span class="chip">EPC D</span><span class="chip">Council tax B</span><span class="chip">Part furnished</span></div>
+            </div>
+            <div class="mini-card">
+              <div class="mini-title">Dossier completeness</div>
+              <div class="mini-head">76%</div>
+              <div class="progress"><span></span></div>
+              <div class="status"><span>22 of 29 captured</span><strong>Ready for CRM</strong></div>
+              <div class="handoff">Core facts checked · supporting items remain visible</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="light">
+      <div class="wrap">
+        <div class="section-kicker">The admin problem</div>
+        <h2 class="section-title">The property details are usually there. They just arrive in the wrong shape.</h2>
+        <p class="section-copy">A landlord or vendor rarely sends a perfect CRM record. Information arrives across emails, follow-ups, attachments and conversations. Someone still has to read it, decide what matters, re-key it, chase what is missing and make sure the right record is updated.</p>
+        <div class="problem-grid">
+          <div class="problem"><b>Information arrives in stages</b><p>Rent today. EPC tomorrow. Access instructions three days later. The property record gets patched together over time.</p></div>
+          <div class="problem"><b>Staff re-key the same facts</b><p>Details are copied from email into CRM fields, notes, portal records and internal checklists.</p></div>
+          <div class="problem"><b>Missing details are easy to miss</b><p>Long emails can contain twenty useful facts. If two are overlooked, the gap may not surface until later.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how">
+      <div class="wrap">
+        <div class="eyebrow">How it works</div>
+        <h2 class="section-title">From messy instruction to CRM-ready dossier.</h2>
+        <div class="workflow">
+          <div class="step"><div class="step-no">01</div><h3>Import the property email</h3><p>Bring in a marked vendor or landlord email from the connected mailbox.</p></div>
+          <div class="step"><div class="step-no">02</div><h3>Extract the useful facts</h3><p>Property, contact, rent or price, EPC, council tax, deposit, access and more are proposed for review.</p></div>
+          <div class="step"><div class="step-no">03</div><h3>See what is missing</h3><p>The dossier shows critical gaps, supporting items and the next sensible action.</p></div>
+          <div class="step"><div class="step-no">04</div><h3>Review the evidence</h3><p>Staff confirm the information against its source and keep official or document checks separate.</p></div>
+          <div class="step"><div class="step-no">05</div><h3>Hand off to the CRM</h3><p>Copy or download a clean internal handoff summary once the core record is ready.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="light" id="fit">
+      <div class="wrap">
+        <div class="section-kicker">Where it fits</div>
+        <h2 class="section-title">It is not another estate agency CRM.</h2>
+        <p class="section-copy">Property Dossier Studio sits in front of the CRM. It handles the messy intake stage, then hands over a cleaner, reviewed property record to the systems your team already uses.</p>
+        <div class="positioning">
+          <div class="yes"><h3>Property Dossier Studio is for</h3><ul><li>Structuring vendor and landlord emails</li><li>Building a property record progressively as new information arrives</li><li>Showing what is missing or still needs review</li><li>Keeping source evidence against key facts</li><li>Preparing a clean CRM handoff</li></ul></div>
+          <div class="no"><h3>It is not trying to be</h3><ul><li>Your CRM</li><li>Your property portal</li><li>An AML provider</li><li>A legal compliance certificate</li><li>A replacement for agent judgement</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="eyebrow">What teams get</div>
+        <h2 class="section-title">Less copying. Fewer loose ends. A clearer handoff.</h2>
+        <div class="feature-grid">
+          <div class="feature"><h3>Progressive property dossiers</h3><p>Follow-up emails can update the same working property record without starting again.</p></div>
+          <div class="feature"><h3>Source-aware information</h3><p>Vendor-supplied details stay linked to their source and remain distinct from official checks.</p></div>
+          <div class="feature"><h3>Missing-information prompts</h3><p>The Studio surfaces what still needs to be requested, checked or supplied.</p></div>
+          <div class="feature"><h3>CRM-ready handoff</h3><p>Once core information is reviewed, staff can copy or download a compact internal summary.</p></div>
+        </div>
+        <div class="quote">“The value is not that AI can read an email. The value is that the property record keeps getting more complete as information arrives.”</div>
+      </div>
+    </section>
+
+    <section class="pilot">
+      <div class="wrap pilot-box">
+        <div>
+          <div class="eyebrow">Pilot with a real workflow</div>
+          <h2 class="section-title">Give us one real instruction process.</h2>
+          <p>We’ll use a small set of genuine vendor or landlord emails to show where the Studio can reduce re-keying, highlight missing information and prepare cleaner CRM handoffs for your team.</p>
+        </div>
+        <div class="pilot-actions">
+          <a class="btn btn-primary" href="mailto:hello@mediahubink.com?subject=Property%20Dossier%20Studio%20pilot">Request a pilot</a>
+          <a class="btn btn-secondary" href="https://app.propertydossierstudio.com" target="_blank" rel="noopener">Open the Studio</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="light" id="faq">
+      <div class="wrap faq">
+        <div><div class="section-kicker">FAQ</div><h2 class="section-title">The obvious questions.</h2></div>
+        <div class="faq-list">
+          <details open><summary>We already have a CRM. Why would we need this?</summary><p>Because the Studio handles the unstructured information before the CRM record is ready. It is designed to reduce the reading, copying, checking and chasing that still happens around the CRM.</p></details>
+          <details><summary>Does it verify legal compliance?</summary><p>No. It records what has been supplied, what source it came from and what the agent has reviewed. Official, legal and document checks remain separate and the agency keeps responsibility for professional judgement.</p></details>
+          <details><summary>Does it only work with Gmail?</summary><p>No. The product is designed around a connected company mailbox, not a specific email provider. The pilot can use the simplest connection method for the agency.</p></details>
+          <details><summary>Can it handle lettings and property management?</summary><p>Yes. The current workflow supports lettings information such as deposit, furnishing, availability, gas safety, EICR, maintenance authority, stopcock, fuse board and access instructions.</p></details>
+          <details><summary>Is this only for the UK?</summary><p>The current pilot is configured for England. The underlying product is being designed so country-specific property workflows can be added separately.</p></details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <div>© 2026 Property Dossier Studio · A Mediahubink product</div>
+      <div>propertydossier.co.uk · app.propertydossierstudio.com</div>
+    </div>
+  </footer>
+</body>
+</html>
